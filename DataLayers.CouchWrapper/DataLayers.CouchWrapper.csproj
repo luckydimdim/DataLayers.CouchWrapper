@@ -1,0 +1,30 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp1.1</TargetFramework>
+
+    <PackageId>Cmas.DataLayers.CouchWrapper</PackageId>
+    <Authors>yamal</Authors>
+    <Description>.NET core couch wrapper</Description>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <PackageReleaseNotes></PackageReleaseNotes>
+    <Copyright>Yamal lng</Copyright>
+    <PackageTags></PackageTags>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <Version>1.0.0</Version>
+    <Product>CMAS</Product>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <FileVersion>1.0.0.0</FileVersion>
+    <AssemblyName>Cmas.DataLayers.CouchWrapper</AssemblyName>
+    <RootNamespace>Cmas.DataLayers.CouchWrapper</RootNamespace>
+    
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Cmas.DataLayers.Clients.CouchClient" Version="*" />
+    <PackageReference Include="Cmas.Infrastructure.ErrorHandler" Version="*" />
+    <PackageReference Include="Newtonsoft.Json" Version="9.0.1" />
+    <PackageReference Include="System.Reflection.Emit.Lightweight" Version="4.3.0" />
+  </ItemGroup>
+
+</Project>
