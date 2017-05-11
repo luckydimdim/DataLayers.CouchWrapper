@@ -29,6 +29,14 @@ namespace Cmas.DataLayers.Infrastructure
                 {
                     throw new NotFoundErrorException();
                 }
+                else if (response.StatusCode == HttpStatusCode.Conflict)
+                {
+                    throw new ConflictErrorException();
+                }
+                else if (response.StatusCode == HttpStatusCode.Forbidden)
+                {
+                    throw new ForbiddenErrorException();
+                }
 
                 throw new Exception("Unknown exception");
             }
