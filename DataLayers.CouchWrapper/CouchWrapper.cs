@@ -5,6 +5,8 @@ using Cmas.Infrastructure.ErrorHandler;
 using Microsoft.Extensions.Logging;
 using MyCouch;
 using MyCouch.Responses;
+using Microsoft.Extensions.Options;
+using Cmas.Infrastructure.Configuration;
 
 namespace Cmas.DataLayers.Infrastructure
 {
@@ -19,6 +21,19 @@ namespace Cmas.DataLayers.Infrastructure
             this.dbConnectionString = dbConnectionString;
             this.dbName = dbName;
             this.logger = logger;
+        }
+
+        public CouchWrapper(IServiceProvider serviceProvider, string serviceName)
+        { 
+            var configuration = serviceProvider.GetConfiguration();
+             
+            var dbSettings = configuration.GetDbSettings(serviceName);
+
+            dbConnectionString = dbSettings.ConnectionString;
+            dbName = dbSettings.Name;
+
+            var _loggerFactory = (ILoggerFactory)serviceProvider.GetService(typeof(ILoggerFactory));
+            logger = _loggerFactory.CreateLogger<CouchWrapper>();
         }
 
         private void CheckResponse(Response response)
