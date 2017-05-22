@@ -36,13 +36,13 @@ namespace Cmas.DataLayers.Infrastructure
             logger = _loggerFactory.CreateLogger<CouchWrapper>();
         }
 
-        private void CheckResponse(Response response)
+        private bool CheckResponse(Response response)
         {
             if (!response.IsSuccess)
             {
                 if (response.StatusCode == HttpStatusCode.NotFound)
                 {
-                    throw new NotFoundErrorException();
+                    return false;
                 }
                 else if (response.StatusCode == HttpStatusCode.Conflict)
                 {
@@ -50,11 +50,13 @@ namespace Cmas.DataLayers.Infrastructure
                 }
                 else if (response.StatusCode == HttpStatusCode.Forbidden)
                 {
-                    throw new ForbiddenErrorException();
+                    throw new Exception("Forbidden");
                 }
 
                 throw new Exception("Unknown exception");
             }
+
+            return true;
         }
 
         public async Task<T> GetResponseAsync<T>(Func<MyCouchClient, Task<T>> method) where T : Response
@@ -65,7 +67,10 @@ namespace Cmas.DataLayers.Infrastructure
 
                 logger.LogInformation(result.ToStringDebugVersion());
 
-                CheckResponse(result);
+                if (!CheckResponse(result))
+                {
+                    return null;
+                }
 
                 return result;
             }
@@ -79,7 +84,10 @@ namespace Cmas.DataLayers.Infrastructure
 
                 logger.LogInformation(result.ToStringDebugVersion());
 
-                CheckResponse(result);
+                if (!CheckResponse(result))
+                {
+                    return null;
+                }
 
                 return result;
             }
@@ -93,7 +101,10 @@ namespace Cmas.DataLayers.Infrastructure
 
                 logger.LogInformation(result.ToStringDebugVersion());
 
-                CheckResponse(result);
+                if (!CheckResponse(result))
+                {
+                    return null;
+                }
 
                 return result;
             }
