@@ -21,10 +21,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Cmas.DataLayers.Clients.CouchClient" Version="*" />
     <PackageReference Include="Cmas.Infrastructure.ErrorHandler" Version="*" />
     <PackageReference Include="Cmas.Infrastructure.Configuration" Version="*" />
-    <PackageReference Include="Newtonsoft.Json" Version="9.0.1" />
+    <PackageReference Include="MyCouch" Version="5.0.1-pre9" />
+    <PackageReference Include="Newtonsoft.Json" Version="10.0.2" />
     <PackageReference Include="System.Reflection.Emit.Lightweight" Version="4.3.0" />
   </ItemGroup>
 
